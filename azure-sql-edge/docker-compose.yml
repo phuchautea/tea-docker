@@ -1,0 +1,22 @@
+version: "3.7"                    
+
+services:                         
+  mssql:
+    image: "mcr.microsoft.com/azure-sql-edge:latest"
+    # platform: linux/amd64
+    container_name: sqlserver
+    restart: always
+    hostname: mssql
+    user: root
+    environment: 
+      - ACCEPT_EULA=1
+      - MSSQL_SA_PASSWORD=YourStrongPassword@123
+
+    volumes:
+      - mssqlvolume:/var/opt/mssql/data
+    ports:
+      - "1433:1433"     
+                        
+volumes:                                
+    mssqlvolume:        
+      name: sqlserver-vl
